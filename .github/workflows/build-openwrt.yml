@@ -6,8 +6,8 @@ on:
       - master
 
 env:
-  REPO_URL: https://github.com/Lienol/openwrt
-  REPO_BRANCH: main
+  REPO_URL: https://github.com/coolsnowwolf/lede
+  REPO_BRANCH: master
   UPLOAD_WGET: true
   UPLOAD_WETRANSFER: false
   UPLOAD_ONEDRIVE: false
