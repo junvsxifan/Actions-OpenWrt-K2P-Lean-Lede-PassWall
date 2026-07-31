@@ -39,3 +39,4 @@ jobs:
         working-directory: ./openwrt
         run: |
           make -j1 V=s
+
