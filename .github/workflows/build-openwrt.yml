@@ -26,7 +26,7 @@ jobs:
         run: |
           git clone https://github.com/immortalwrt/immortalwrt.git openwrt
           cd openwrt
-          cp ../.config .config
+          # 这里不再复制外部.config，使用源码默认配置
           [ -f ../diy.sh ] && bash ../diy.sh
 
       - name: 预下载源码包
@@ -37,6 +37,12 @@ jobs:
       - name: 编译固件
         run: |
           cd openwrt
+          # 先调出配置界面选择K2P A2
+          make menuconfig <<EOF
+          4
+          1
+          phicomm_k2p-a2
+          EOF
           make -j$(nproc)
 
       - name: 上传固件成品
