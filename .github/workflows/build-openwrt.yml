@@ -10,7 +10,7 @@ jobs:
       - name: 拉取仓库代码
         uses: actions/checkout@v4
 
-      - name: 挂载4G虚拟内存【关键修复】
+      - name: 挂载4G虚拟内存
         uses: pierotofy/set-swap-space@master
         with:
           swap-size-gb: 4
@@ -22,9 +22,9 @@ jobs:
           sudo apt update
           sudo apt install -y build-essential libncurses-dev gawk flex bison qemu-utils git wget curl unzip python3 python3-distutils
 
-      - name: 克隆Lean源码
+      - name: 克隆ImmortalWrt源码
         run: |
-          git clone https://github.com/coolsnowwolf/lede.git openwrt
+          git clone https://github.com/immortalwrt/immortalwrt.git openwrt
           cd openwrt
           cp ../.config .config
           [ -f ../diy.sh ] && bash ../diy.sh
