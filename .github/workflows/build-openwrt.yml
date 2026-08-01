@@ -26,21 +26,25 @@ jobs:
         run: |
           git clone https://github.com/immortalwrt/immortalwrt.git openwrt
           cd openwrt
-          # 固定目标机型 K2P A2
+          # 目标机型 K2P A2
           echo "CONFIG_TARGET_ath79=y" > .config
           echo "CONFIG_TARGET_ath79_generic=y" >> .config
           echo "CONFIG_TARGET_ath79_generic_DEVICE_phicomm_k2p-a2=y" >> .config
-          # 基础必选包
+          # 基础系统
           echo "CONFIG_PACKAGE_luci=y" >> .config
           echo "CONFIG_PACKAGE_luci-i18n-base-zh-cn=y" >> .config
           echo "CONFIG_PACKAGE_ca-bundle=y" >> .config
           echo "CONFIG_PACKAGE_kmod-ath9k=y" >> .config
           echo "CONFIG_PACKAGE_wpad-basic-wolfssl=y" >> .config
-          # 关闭IPv6
+          # 关闭IPv6瘦身
           echo "CONFIG_IPV6=n" >> .config
-          # 执行预配置扩展
+          # 内置 Passwall
+          echo "CONFIG_PACKAGE_luci-app-passwall=y" >> .config
+          echo "CONFIG_PACKAGE_luci-i18n-passwall-zh-cn=y" >> .config
+          # 支持 Vless 订阅必需组件
+          echo "CONFIG_PACKAGE_xray-core=y" >> .config
+          # 执行自定义脚本
           [ -f ../diy.sh ] && bash ../diy.sh
-          # 展开完整配置
           make defconfig
 
       - name: 下载源码包
