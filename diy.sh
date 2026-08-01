@@ -1,3 +1,3 @@
-# Add Compile-ID(cid)
-cid=$(date "+%Y-%m-%d")
-sed -i "s/R20.4.8/R20.4.8[${cid}]/g" package/lean/default-settings/files/zzz-default-settings
+#!/bin/bash
+# 纯净基础编译，暂时不额外拉取插件
+echo "DIY准备完成"
