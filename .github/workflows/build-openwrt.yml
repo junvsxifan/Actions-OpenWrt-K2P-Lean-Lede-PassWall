@@ -10,6 +10,11 @@ jobs:
       - name: 拉取仓库代码
         uses: actions/checkout@v4
 
+      - name: 挂载4G虚拟内存【关键修复】
+        uses: pierotofy/set-swap-space@master
+        with:
+          swap-size-gb: 4
+
       - name: 安装依赖环境
         env:
           DEBIAN_FRONTEND: noninteractive
@@ -24,7 +29,7 @@ jobs:
           cp ../.config .config
           [ -f ../diy.sh ] && bash ../diy.sh
 
-      - name: 预编译下载
+      - name: 预下载源码包
         run: |
           cd openwrt
           make download -j$(nproc)
