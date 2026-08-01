@@ -5,4 +5,4 @@ jobs:
   test:
     runs-on: ubuntu-22.04
     steps:
-      - run: echo "工作流正常运行"
+      - run: echo "Test OK"
