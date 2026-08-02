@@ -7,7 +7,7 @@ on:
 
 env:
   REPO_URL: https://github.com/immortalwrt/immortalwrt
-  REPO_BRANCH: master
+  REPO_BRANCH: openwrt-23.05
   CONFIG_FILE: .config
   DIY_SH: diy.sh
   TZ: Asia/Shanghai
@@ -36,8 +36,9 @@ jobs:
       - name: Build firmware
         run: |
           cd openwrt
+          export TERM=xterm
           make -j$(nproc) download
-          make -j$(nproc)
+          make -j$(nproc) V=
 
       - name: Upload firmware
         uses: actions/upload-artifact@main
