@@ -1,3 +1,4 @@
 #!/bin/bash
-# 纯净基础编译，暂时不额外拉取插件
-echo "DIY准备完成"
+# 下载Passwall插件
+git clone https://github.com/xiaorouji/openwrt-passwall.git package/passwall
+git clone https://github.com/xiaorouji/openwrt-passwall-packages.git package/passwall-packages
