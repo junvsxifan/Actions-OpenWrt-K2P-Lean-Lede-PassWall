@@ -37,7 +37,12 @@ jobs:
         run: |
           cd openwrt
           export TERM=xterm
+          # 替换国内镜像源
+          sed -i 's/downloads.openwrt.org/mirrors.tuna.tsinghua.edu.cn\/openwrt/g' feeds.conf.default
+          sed -i 's/git.openwrt.org/mirrors.tuna.tsinghua.edu.cn\/git-openwrt/g' feeds.conf.default
           make defconfig
+          # 增加wget超时参数，减少无效死等
+          export WGET_OPT="--timeout=30 --tries=3"
           make -j$(nproc) download V=s
           make -j$(nproc) V=s
 
