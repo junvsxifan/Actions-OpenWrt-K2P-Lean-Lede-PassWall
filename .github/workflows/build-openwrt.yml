@@ -34,10 +34,6 @@ jobs:
 
       - name: Build firmware
         run: |
-          sudo fallocate -l 4G /swapfile
-          sudo chmod 600 /swapfile
-          sudo mkswap /swapfile
-          sudo swapon /swapfile
           cd openwrt
           make -j1 V=s
 
